@@ -2,12 +2,10 @@
    The rest of the copy lives in index.html. */
 window.L = window.L || {};
 window.L.config = {
-  name: 'Leno',
+  name: 'Haven Leno J',
   email: 'havenleno2006@gmail.com',
-  // IANA time zone for the live clock and the "right now" line.
+  // IANA time zone and city for the live clock.
   timeZone: 'Asia/Kolkata',
-  place: 'India, UTC+5:30',
-  // Working hours in local time, 24-hour clock.
-  workStart: 10,
-  workEnd: 19,
+  city: 'Chennai',
+  place: 'Chennai, India',
 };

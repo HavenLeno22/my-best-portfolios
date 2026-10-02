@@ -138,6 +138,21 @@
       lp.connect(amp).connect(input);
     },
 
+    // A plain sine tone for Morse code. `duration` is in seconds; short ramps avoid clicks.
+    beep(t, duration) {
+      const osc = ctx.createOscillator();
+      const amp = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = 660;
+      amp.gain.setValueAtTime(0, t);
+      amp.gain.linearRampToValueAtTime(0.28, t + 0.005);
+      amp.gain.setValueAtTime(0.28, t + duration - 0.005);
+      amp.gain.linearRampToValueAtTime(0, t + duration);
+      osc.connect(amp).connect(input);
+      osc.start(t);
+      osc.stop(t + duration + 0.01);
+    },
+
     // The patch cable seating into a jack: a click and a low thump.
     plug(t) {
       voices.hat(t);

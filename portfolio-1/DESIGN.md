@@ -34,7 +34,7 @@ its colour everywhere on the page.
 
 - **Archivo** (variable, `wdth 62–125`, `wght 100–900`) for everything. Headlines and the
   wordmark are set at full width (125) and heavy weight, like brand marks moulded into a
-  case. Body at normal width. The specimen module drives the same axes live.
+  case. Body at normal width.
 - **Doto** (dot-matrix) only inside LCD readouts, because that is the display technology.
 - Scale: 14 / 17 / 22 / 30 / clamp(40–68) / clamp(84–210). Labels are lowercase, no tracking.
 
@@ -43,13 +43,13 @@ its colour everywhere on the page.
 1. Header: wordmark, section links, night switch, sound switch.
 2. Hero device: wordmark + intro, LCD with oscilloscope and readouts, three knobs
    (tempo, tone, swing), transport, patterns a–d, 4×16 sequencer, speaker grille.
-3. Work rack: four live modules, each with a "how it's built" note.
-   - Plotter: seeded flow-field drawings, copy as SVG.
-   - Specimen: variable-font tester on Archivo's axes.
-   - Contrast: WCAG contrast meter with an automatic fix.
-   - Life: Conway's Game of Life on a 16×16 LED matrix, stepped by the beat.
-4. About: bio and a spec sheet with live local time.
-5. Process: a four-stage signal chain (it really is a sequence, so it's numbered).
+3. Work rack: four project modules with stack labels and code links.
+   - SurgeGuard 1.0: an LCD panel with the real Crowd Stability Index bands and indicator
+     weights, and a knob that maps a score to its operational status.
+   - Multi-Mode AI Translator: a Morse encoder that plays through the page's audio engine.
+   - StaffSync and Student Expense Tracker: screenshots behind a monitor bezel.
+4. About: bio and a spec sheet with live local time. Facts only, from the owner.
+5. Stack: the four layers of a full-stack app as a pedal chain (a real sequence, so numbered).
 6. Contact: patch bay with a rope-physics cable. Email always visible as text.
 7. Colophon footer and a keyboard shortcut sheet.
 
@@ -58,6 +58,6 @@ its colour everywhere on the page.
 - One orchestrated motion moment: the device powering on at load. Everything else moves
   only in response to the visitor or to the music.
 - Every drag has a click or keyboard alternative (WCAG 2.2 — 2.5.7). Targets ≥ 24px.
-- `prefers-reduced-motion`: no boot sweep, plotter draws instantly, no idle scope drift.
+- `prefers-reduced-motion`: no boot sweep, no idle scope drift.
 - No frameworks, no build step. Opens by double-clicking `index.html`.
 - Page is complete at rest; nothing waits at `opacity: 0` for a scroll observer.

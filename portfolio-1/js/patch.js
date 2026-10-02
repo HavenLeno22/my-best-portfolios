@@ -255,7 +255,7 @@
     auto = null;
     bay.classList.remove('is-near');
     led.classList.add('is-on');
-    statusEl.textContent = `Connected. Write to ${L.config.email} and I'll reply within two working days.`;
+    statusEl.textContent = `Connected. Write to me at ${L.config.email}.`;
     actions.hidden = false;
     measure();
     plug.setAttribute('aria-label', LABEL_CONNECTED);
