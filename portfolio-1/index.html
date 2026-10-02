@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Leno Instrument No. 1</title>
+<meta name="description" content="Leno designs and builds interfaces for the web. This portfolio is a playable instrument: a drum machine, four live tools, and a patch cable to get in touch.">
+<meta name="theme-color" content="#E2E4E1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141617" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23FF5A1F'/%3E%3Crect x='14.5' y='4' width='3' height='11' rx='1.5' fill='%231B1E1D'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Doto:wght@400..900&display=swap">
+<script>
+  // Apply a saved theme before first paint so the page never flashes the wrong one.
+  (function () {
+    document.documentElement.classList.add('js');
+    try {
+      var saved = JSON.parse(localStorage.getItem('leno:theme'));
+      if (saved === 'dark' || saved === 'light') document.documentElement.setAttribute('data-theme', saved);
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/device.css">
+<link rel="stylesheet" href="css/rack.css">
+<link rel="stylesheet" href="css/sections.css">
+</head>
+<body>
+
+<a class="skip" href="#work">Skip to the work</a>
+
+<header class="topbar" id="topbar">
+  <div class="wrap topbar__inner">
+    <a class="topbar__mark" href="#top" aria-label="Leno, back to the top">leno</a>
+    <nav class="topbar__nav" aria-label="Sections">
+      <a href="#work">work</a>
+      <a href="#about">about</a>
+      <a href="#process">process</a>
+      <a href="#contact">contact</a>
+    </nav>
+    <div class="topbar__switches">
+      <button class="switch" id="theme-switch" type="button" role="switch" aria-checked="false">
+        <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+        <span class="switch__label">night</span>
+      </button>
+      <button class="switch" id="sound-switch" type="button" role="switch" aria-checked="true">
+        <span class="switch__track" aria-hidden="true"><span class="switch__thumb"></span></span>
+        <span class="switch__label">sound</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- The hero is a working drum machine. -->
+  <section class="hero wrap" id="top" aria-labelledby="hero-title">
+    <div class="device" id="device" data-state="off">
+      <span class="screw screw--tl" aria-hidden="true"></span>
+      <span class="screw screw--tr" aria-hidden="true"></span>
+      <span class="screw screw--bl" aria-hidden="true"></span>
+      <span class="screw screw--br" aria-hidden="true"></span>
+
+      <div class="device__head">
+        <div class="device__brand">
+          <h1 class="wordmark" id="hero-title">leno</h1>
+          <p class="device__model"><span class="led led--power" aria-hidden="true"></span>instrument no. 1</p>
+        </div>
+        <div class="device__intro">
+          <p class="lede">I design and build interfaces for the web. I care most about the part people only feel: how fast a thing responds, how it sounds, and whether it is still pleasant on the hundredth use.</p>
+          <dl class="plate">
+            <div><dt>practice</dt><dd>interface design and front-end engineering</dd></div>
+            <div><dt>based in</dt><dd data-place>India, UTC+5:30</dd></div>
+            <div><dt>local time</dt><dd><time data-clock>--:--</time></dd></div>
+            <div><dt>status</dt><dd>open to freelance work and full-time roles</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="device__deck">
+        <div class="lcd" id="lcd">
+          <canvas class="lcd__scope" id="scope" aria-hidden="true"></canvas>
+          <div class="lcd__top">
+            <div class="lcd__tempo">
+              <span class="lcd__ghost" aria-hidden="true">888</span>
+              <span class="lcd__bpm" id="lcd-bpm">112</span>
+              <span class="lcd__unit">bpm</span>
+            </div>
+            <div class="lcd__meta">
+              <span id="lcd-pattern">pattern a</span>
+              <span id="lcd-step">step --</span>
+            </div>
+          </div>
+          <div class="lcd__bottom">
+            <span class="lcd__msg" id="lcd-msg" aria-live="polite">press play</span>
+            <span class="lcd__steps" id="lcd-steps" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div class="knobs">
+            <div class="knob-wrap"><div id="knob-tempo"></div><span class="knob-label" id="knob-tempo-label">tempo</span></div>
+            <div class="knob-wrap"><div id="knob-tone"></div><span class="knob-label" id="knob-tone-label">tone</span></div>
+            <div class="knob-wrap"><div id="knob-swing"></div><span class="knob-label" id="knob-swing-label">swing</span></div>
+          </div>
+          <div class="transport">
+            <button class="key key--play" id="play" type="button">
+              <span class="key__led" aria-hidden="true"></span>
+              <svg class="icon icon--play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
+              <svg class="icon icon--stop" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="3.5" width="9" height="9" rx="1"/></svg>
+              <span class="key__text">play</span>
+            </button>
+            <div class="patterns" role="group" aria-label="Patterns">
+              <button class="key" type="button" data-pattern="a" aria-pressed="true" aria-label="Pattern a, four on the floor">a</button>
+              <button class="key" type="button" data-pattern="b" aria-pressed="false" aria-label="Pattern b, broken beat">b</button>
+              <button class="key" type="button" data-pattern="c" aria-pressed="false" aria-label="Pattern c, half time">c</button>
+              <button class="key" type="button" data-pattern="d" aria-pressed="false" aria-label="Pattern d, electro">d</button>
+            </div>
+            <button class="key" id="shake" type="button">shake</button>
+            <button class="key" id="clear" type="button">clear</button>
+            <button class="key" id="share" type="button">copy link</button>
+          </div>
+        </div>
+
+        <div class="grille" id="grille" aria-hidden="true"></div>
+      </div>
+
+      <div class="seq" id="seq" role="group" aria-label="Step sequencer, 4 lanes of 16 steps" aria-describedby="seq-help">
+        <p class="visually-hidden" id="seq-help">Each button turns one step on or off. Use the arrow keys to move between steps.</p>
+      </div>
+    </div>
+    <p class="hero__hint">Press play or the space bar, then change the steps while it runs. Turn the knobs by dragging, clicking a point on the dial, or with the arrow keys.</p>
+  </section>
+
+  <!-- Work: four live modules mounted in a rack. -->
+  <section class="section wrap" id="work" aria-labelledby="work-title">
+    <div class="section__head">
+      <h2 class="section__title" id="work-title">Work</h2>
+      <p class="section__lead">Four small instruments, all running live on this page. Each one began as a question I wanted to answer with a working prototype instead of a mockup. Open the notes on any module to see how it is built.</p>
+    </div>
+
+    <div class="rack">
+      <div class="rack__row">
+
+        <article class="module module--plotter" id="plotter" aria-labelledby="plotter-title" style="--span: 7">
+          <header class="module__head">
+            <h3 id="plotter-title">plotter</h3>
+            <p>Seeded flow-field drawings, drawn line by line the way a pen plotter would.</p>
+          </header>
+          <div class="module__screen plotter__paper">
+            <canvas class="plotter__canvas" id="plotter-canvas" role="img" aria-label="Generated line drawing"></canvas>
+            <span class="plotter__pen" id="plotter-pen" aria-hidden="true"></span>
+          </div>
+          <div class="module__controls">
+            <div class="knob-wrap knob-wrap--small"><div id="knob-density"></div><span class="knob-label" id="knob-density-label">lines</span></div>
+            <div class="knob-wrap knob-wrap--small"><div id="knob-flow"></div><span class="knob-label" id="knob-flow-label">flow</span></div>
+            <button class="key" id="plotter-new" type="button">new drawing</button>
+            <button class="key" id="plotter-copy" type="button">copy as svg</button>
+            <span class="readout" id="plotter-seed">seed 0000</span>
+          </div>
+          <details class="module__notes">
+            <summary>How it's built</summary>
+            <p>A flow field is a grid of angles taken from gradient noise. Every line starts at a random point and follows those angles until it leaves the paper. The random numbers come from a seeded generator, so the same seed always gives the same drawing.</p>
+            <p>It renders to canvas while you watch. Copying exports the same line data as clean SVG paths, ready to paste into Figma or send to a real plotter.</p>
+            <p class="module__stack">Canvas 2D, seeded PRNG, Perlin-style gradient noise</p>
+          </details>
+        </article>
+
+        <article class="module module--specimen" id="specimen" aria-labelledby="specimen-title" style="--span: 5">
+          <header class="module__head">
+            <h3 id="specimen-title">specimen</h3>
+            <p>A variable-font tester that drives weight and width like a mixing desk.</p>
+          </header>
+          <div class="module__screen specimen__screen" id="specimen-screen">
+            <p class="specimen__text" id="specimen-text" contenteditable="true" spellcheck="false" role="textbox" aria-label="Sample text. Click to type your own.">Handgloves</p>
+          </div>
+          <div class="module__controls">
+            <div class="knob-wrap knob-wrap--small"><div id="knob-wght"></div><span class="knob-label" id="knob-wght-label">weight</span></div>
+            <div class="knob-wrap knob-wrap--small"><div id="knob-wdth"></div><span class="knob-label" id="knob-wdth-label">width</span></div>
+            <div class="knob-wrap knob-wrap--small"><div id="knob-size"></div><span class="knob-label" id="knob-size-label">size</span></div>
+            <button class="key" id="specimen-italic" type="button" aria-pressed="false"><span class="key__led" aria-hidden="true"></span>italic</button>
+            <button class="key" id="specimen-sweep" type="button">sweep</button>
+            <span class="readout" id="specimen-readout">wght 700 wdth 100</span>
+          </div>
+          <details class="module__notes">
+            <summary>How it's built</summary>
+            <p>A variable font stores a whole family in one file, with axes you can set to any value in between. This tester moves Archivo along its weight and width axes, the same font and axes used for every heading on this page. Click the sample to type your own text.</p>
+            <p class="module__stack">CSS font-weight and font-stretch on a variable font, container query units</p>
+          </details>
+        </article>
+
+      </div>
+      <div class="rack__row">
+
+        <article class="module module--life" id="life" aria-labelledby="life-title" style="--span: 5">
+          <header class="module__head">
+            <h3 id="life-title">life</h3>
+            <p>Conway's Game of Life on a 16 by 16 LED matrix, stepped by the beat.</p>
+          </header>
+          <div class="module__screen life__matrix">
+            <canvas class="life__canvas" id="life-canvas" tabindex="0" role="application" aria-roledescription="cell grid" aria-label="Life grid, 16 by 16. Arrow keys move the cursor, space turns a cell on or off." aria-describedby="life-readout"></canvas>
+          </div>
+          <div class="module__controls">
+            <button class="key" id="life-run" type="button" aria-pressed="false"><span class="key__led" aria-hidden="true"></span>run</button>
+            <button class="key" id="life-step" type="button">step</button>
+            <button class="key" id="life-seed" type="button">scatter</button>
+            <button class="key" id="life-clear" type="button">clear</button>
+            <span class="readout" id="life-readout">gen 0000</span>
+          </div>
+          <details class="module__notes">
+            <summary>How it's built</summary>
+            <p>The grid wraps at the edges, so a glider that leaves on the right comes back on the left. Draw cells with the pointer, or focus the grid and use the arrow keys and space.</p>
+            <p>When the drum machine is playing, the grid advances one generation on every beat instead of running on its own timer, so rhythm and pattern stay locked together.</p>
+            <p class="module__stack">Canvas 2D, typed arrays, the sequencer's audio clock</p>
+          </details>
+        </article>
+
+        <article class="module module--contrast" id="contrast" aria-labelledby="contrast-title" style="--span: 7">
+          <header class="module__head">
+            <h3 id="contrast-title">contrast</h3>
+            <p>A contrast meter for text colours, with a fix that keeps the hue you chose.</p>
+          </header>
+          <div class="module__screen contrast__screen">
+            <div class="contrast__preview" id="contrast-preview">
+              <p class="contrast__big">Can you read this?</p>
+              <p class="contrast__small">Body text needs a contrast ratio of at least 4.5 to 1 against its background. Large text can get by with 3 to 1.</p>
+            </div>
+            <div class="contrast__meter">
+              <p class="readout readout--big" id="contrast-ratio">0.00 : 1</p>
+              <ul class="contrast__checks" id="contrast-checks">
+                <li data-min="3"><span class="led" aria-hidden="true"></span><span>large text, 3:1</span><strong>fail</strong></li>
+                <li data-min="4.5"><span class="led" aria-hidden="true"></span><span>body text, 4.5:1</span><strong>fail</strong></li>
+                <li data-min="7"><span class="led" aria-hidden="true"></span><span>enhanced, 7:1</span><strong>fail</strong></li>
+              </ul>
+              <p class="contrast__hex">
+                <button class="hexchip" type="button" id="contrast-fg-hex">#000000</button>
+                <span>on</span>
+                <button class="hexchip" type="button" id="contrast-bg-hex">#FFFFFF</button>
+              </p>
+            </div>
+          </div>
+          <div class="module__controls">
+            <div class="knob-wrap knob-wrap--small"><div id="knob-fg-h"></div><span class="knob-label" id="knob-fg-h-label">text hue</span></div>
+            <div class="knob-wrap knob-wrap--small"><div id="knob-fg-l"></div><span class="knob-label" id="knob-fg-l-label">text light</span></div>
+            <div class="knob-wrap knob-wrap--small"><div id="knob-bg-h"></div><span class="knob-label" id="knob-bg-h-label">ground hue</span></div>
+            <div class="knob-wrap knob-wrap--small"><div id="knob-bg-l"></div><span class="knob-label" id="knob-bg-l-label">ground light</span></div>
+            <button class="key" id="contrast-fix" type="button">fix</button>
+            <button class="key" id="contrast-swap" type="button">swap</button>
+          </div>
+          <details class="module__notes">
+            <summary>How it's built</summary>
+            <p>The ratio uses the WCAG 2 formula: the relative luminance of the lighter colour plus 0.05, divided by the darker one plus 0.05. Fix runs a binary search for the smallest lightness change to the text colour that reaches 4.5 to 1, so the hue you picked survives.</p>
+            <p class="module__stack">sRGB relative luminance, binary search, no colour libraries</p>
+          </details>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section wrap about" id="about" aria-labelledby="about-title">
+    <div class="section__head">
+      <h2 class="section__title" id="about-title">About</h2>
+    </div>
+    <div class="about__grid">
+      <div class="about__text">
+        <p>I'm Leno, a designer who writes the code for what I design. Most of my work sits where interface design meets engineering: design systems, interactive tools, and the small details that make software feel considered.</p>
+        <p>I learned by taking apart websites I liked to see how they worked, and I still learn best that way. This page is hand-written HTML, CSS and JavaScript with no frameworks. I set that constraint to keep it fast, and to prove to myself I understand every part of it.</p>
+        <p>Away from the browser I listen to a lot of music with too many synthesizers in it, which explains the drum machine at the top of the page.</p>
+      </div>
+      <aside class="spec" aria-labelledby="spec-title">
+        <span class="screw screw--tl" aria-hidden="true"></span>
+        <span class="screw screw--br" aria-hidden="true"></span>
+        <h3 class="spec__title" id="spec-title">spec sheet</h3>
+        <dl class="spec__list">
+          <div><dt>disciplines</dt><dd>interface design, design systems, front-end engineering, creative coding</dd></div>
+          <div><dt>tools</dt><dd>Figma, TypeScript, React, Next.js, Canvas, Web Audio, WebGL</dd></div>
+          <div><dt>working hours</dt><dd>10:00 to 19:00 IST, flexible for other time zones</dd></div>
+          <div><dt>replies</dt><dd>within two working days</dd></div>
+          <div><dt>right now</dt><dd id="now-status">checking the clock</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Process: the stages really are a sequence, so they are numbered. -->
+  <section class="section wrap" id="process" aria-labelledby="process-title">
+    <div class="section__head">
+      <h2 class="section__title" id="process-title">Process</h2>
+      <p class="section__lead">Every project runs through the same signal chain. The order matters, and so does looping back to the start when something sounds wrong.</p>
+    </div>
+    <ol class="chain" id="chain">
+      <li class="pedal">
+        <div class="pedal__top"><span class="pedal__num">1</span><span class="led" aria-hidden="true"></span></div>
+        <h3>listen</h3>
+        <p>Talk to the people who will use the thing and read what already exists. I write the problem down in one sentence before designing anything.</p>
+      </li>
+      <li class="pedal">
+        <div class="pedal__top"><span class="pedal__num">2</span><span class="led" aria-hidden="true"></span></div>
+        <h3>sketch</h3>
+        <p>Prototype in the browser early, with real content. A rough version you can click beats a polished picture you can't.</p>
+      </li>
+      <li class="pedal">
+        <div class="pedal__top"><span class="pedal__num">3</span><span class="led" aria-hidden="true"></span></div>
+        <h3>build</h3>
+        <p>Production code that is typed, accessible, and quick on a cheap phone. Design decisions become tokens and components, not one-off styles.</p>
+      </li>
+      <li class="pedal">
+        <div class="pedal__top"><span class="pedal__num">4</span><span class="led" aria-hidden="true"></span></div>
+        <h3>tune</h3>
+        <p>Ship it, watch how it gets used, and adjust. Most of the quality in a product comes from the second and third pass.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- Contact: a patch bay with a real cable. The address is always visible as text. -->
+  <section class="section wrap contact" id="contact" aria-labelledby="contact-title">
+    <div class="contact__grid">
+      <div class="contact__text">
+        <h2 class="section__title" id="contact-title">Contact</h2>
+        <p class="section__lead">Have a project, a role, or a question about anything on this page? Plug in the cable, or write to me directly.</p>
+        <div class="contact__email">
+          <a class="contact__address" data-email href="mailto:havenleno2006@gmail.com">havenleno2006@gmail.com</a>
+          <button class="key" type="button" data-copy-email>copy address</button>
+        </div>
+      </div>
+      <div class="patchbay" id="patchbay">
+        <span class="screw screw--tl" aria-hidden="true"></span>
+        <span class="screw screw--tr" aria-hidden="true"></span>
+        <span class="screw screw--bl" aria-hidden="true"></span>
+        <span class="screw screw--br" aria-hidden="true"></span>
+        <canvas class="patchbay__canvas" id="patch-canvas" aria-hidden="true"></canvas>
+        <div class="jack jack--out" id="jack-out">
+          <span class="jack__hole" aria-hidden="true"></span>
+          <span class="jack__label">your idea</span>
+        </div>
+        <div class="jack jack--in" id="jack-in">
+          <span class="jack__hole" aria-hidden="true"></span>
+          <span class="jack__label"><span class="led" id="jack-led" aria-hidden="true"></span>my inbox</span>
+        </div>
+        <button class="patch__plug" id="patch-plug" type="button" aria-label="Cable plug. Press to plug it into my inbox."></button>
+        <div class="patchbay__status">
+          <p id="patch-status" aria-live="polite">Drag the plug into my inbox, or press it.</p>
+          <div class="patchbay__actions" id="patch-actions" hidden>
+            <a class="key key--go" data-email-compose href="mailto:havenleno2006@gmail.com">write an email</a>
+            <button class="key" type="button" id="patch-unplug">unplug</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap colophon">
+  <p>Set in Archivo and Doto. Hand-written HTML, CSS and JavaScript, no frameworks. Every sound is synthesized live with the Web Audio API.</p>
+  <p class="colophon__end"><button class="linkish" type="button" id="open-shortcuts">keyboard shortcuts</button><span>&copy; <span data-year>2026</span> Leno</span></p>
+</footer>
+
+<div class="minideck" id="minideck" aria-hidden="true">
+  <span class="minideck__steps" id="mini-steps"></span>
+  <button class="key key--small" type="button" id="mini-stop" tabindex="-1">stop</button>
+  <a class="minideck__back" href="#top" tabindex="-1">back to the device</a>
+</div>
+
+<dialog class="sheet" id="shortcuts" aria-labelledby="shortcuts-title">
+  <h2 id="shortcuts-title">Keyboard shortcuts</h2>
+  <dl class="sheet__list">
+    <div><dt>play or stop</dt><dd><kbd>space</kbd></dd></div>
+    <div><dt>patterns a to d</dt><dd><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd></dd></div>
+    <div><dt>shake the pattern</dt><dd><kbd>r</kbd></dd></div>
+    <div><dt>clear the pattern</dt><dd><kbd>c</kbd></dd></div>
+    <div><dt>night mode</dt><dd><kbd>n</kbd></dd></div>
+    <div><dt>sound on or off</dt><dd><kbd>m</kbd></dd></div>
+    <div><dt>this sheet</dt><dd><kbd>?</kbd></dd></div>
+  </dl>
+  <form method="dialog"><button class="key" type="submit">close</button></form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/core.js" defer></script>
+<script src="js/config.js" defer></script>
+<script src="js/audio.js" defer></script>
+<script src="js/knob.js" defer></script>
+<script src="js/scope.js" defer></script>
+<script src="js/sequencer.js" defer></script>
+<script src="js/plotter.js" defer></script>
+<script src="js/specimen.js" defer></script>
+<script src="js/contrast.js" defer></script>
+<script src="js/life.js" defer></script>
+<script src="js/patch.js" defer></script>
+<script src="js/app.js" defer></script>
+</body>
+</html>

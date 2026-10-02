@@ -1,0 +1,422 @@
+/* The hero device: head (wordmark + intro), deck (LCD, controls, grille), sequencer. */
+
+.hero {
+  padding-block: clamp(16px, 2.6vw, 32px) clamp(24px, 4vw, 48px);
+}
+
+.hero__hint {
+  margin-top: 18px;
+  max-width: 72ch;
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+.device {
+  position: relative;
+  display: grid;
+  gap: clamp(22px, 3vw, 34px);
+  padding: clamp(22px, 3.4vw, 44px);
+  border-radius: clamp(14px, 2vw, 24px);
+  background: var(--panel);
+  box-shadow:
+    inset 0 1px 0 var(--hi),
+    inset 0 -2px 0 rgb(0 0 0 / .04),
+    0 0 0 1px var(--edge),
+    0 2px 2px rgb(var(--shadow-rgb) / .08),
+    0 44px 80px -44px rgb(var(--shadow-rgb) / .6);
+  transition: background-color .35s ease;
+}
+
+/* The case shows at once; its contents wait for the web fonts (the boot in app.js adds
+   .is-ready), so nothing visibly jumps when the fonts swap in. The animation is a CSS-only
+   safety net that reveals everything after 1.6s even if the scripts never run. */
+.js .device:not(.is-ready) > :not(.screw) {
+  visibility: hidden;
+  animation: device-reveal 0s 1.6s forwards;
+}
+@keyframes device-reveal { to { visibility: visible; } }
+
+/* ---- head ---- */
+
+.device__head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 72px);
+  align-items: end;
+}
+
+.wordmark {
+  /* A fixed box, measured from the loaded font, so the hero grid can't jump on font swap. */
+  width: 2.6em;
+  white-space: nowrap;
+  margin-left: -0.05em;
+  font-size: clamp(88px, 14vw, 196px);
+  font-weight: 900;
+  font-stretch: 125%;
+  line-height: .74;
+  letter-spacing: -0.04em;
+}
+
+.device__model {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+.led--power { --lit: var(--green); }
+.device:not([data-state="off"]) .led--power {
+  background: var(--green);
+  box-shadow: 0 0 0 1px rgb(0 0 0 / .08), 0 0 8px 1px var(--green);
+}
+
+.device__intro {
+  display: grid;
+  gap: 22px;
+  max-width: 640px;
+  justify-self: end;
+}
+
+.lede {
+  font-size: clamp(17px, 1.45vw, 20px);
+  line-height: 1.5;
+}
+
+.plate {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 24px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.plate > div {
+  padding-top: 8px;
+  border-top: 1px solid var(--edge);
+}
+.plate dt { color: var(--ink-soft); }
+.plate dd { font-weight: 550; }
+.plate time { font-variant-numeric: tabular-nums; }
+
+/* ---- deck ---- */
+
+.device__deck {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) 128px;
+  gap: clamp(18px, 2.6vw, 32px);
+  align-items: stretch;
+}
+
+.lcd {
+  position: relative;
+  min-height: 212px;
+  overflow: hidden;
+  border: 7px solid var(--lcd-bezel);
+  border-radius: 11px;
+  background: var(--lcd);
+  color: var(--lcd-ink);
+  font-family: var(--font-dot);
+  box-shadow:
+    inset 0 3px 10px rgb(0 0 0 / .3),
+    0 1px 0 var(--hi);
+  transition: background-color .35s ease;
+}
+/* The pixel matrix of a reflective LCD, and a faint glare across the glass. */
+.lcd::before,
+.lcd::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.lcd::before {
+  background-image:
+    linear-gradient(90deg, rgb(0 0 0 / .05) 1px, transparent 1px),
+    linear-gradient(rgb(0 0 0 / .05) 1px, transparent 1px);
+  background-size: 3px 3px;
+}
+.lcd::after {
+  background: linear-gradient(158deg, rgb(255 255 255 / .2), transparent 38%);
+}
+.js .device[data-state="off"] .lcd__top,
+.js .device[data-state="off"] .lcd__bottom,
+.js .device[data-state="off"] .lcd__scope { opacity: 0; }
+
+.lcd__scope {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity .3s ease;
+}
+
+.lcd__top,
+.lcd__bottom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  transition: opacity .3s ease;
+}
+.lcd__bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  align-items: end;
+}
+
+.lcd__tempo {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.lcd__ghost,
+.lcd__bpm {
+  font-size: 50px;
+  font-weight: 900;
+  line-height: .85;
+  font-variant-numeric: tabular-nums;
+}
+/* Unlit segments behind the digits, as on a real LCD. */
+.lcd__ghost {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .09;
+}
+.lcd__bpm { position: relative; min-width: 3ch; }
+.lcd__unit { font-size: 17px; font-weight: 800; }
+
+.lcd__meta {
+  display: grid;
+  justify-items: end;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.lcd__msg {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.lcd__steps {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  gap: 3px;
+  width: min(46%, 220px);
+}
+.lcd__steps i {
+  height: 7px;
+  background: currentColor;
+  opacity: .12;
+}
+.lcd__steps i:nth-child(4n + 1) { opacity: .24; }
+.lcd__steps i.is-on { opacity: .95; }
+
+/* ---- controls ---- */
+
+.controls {
+  display: grid;
+  align-content: space-between;
+  gap: 22px;
+  min-width: 0;
+}
+
+.knobs {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.transport {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 8px;
+}
+
+.key--play {
+  --face: var(--orange);
+  --side: var(--orange-deep);
+  --lit: var(--paper);
+  min-width: 112px;
+  color: var(--on-accent);
+  font-weight: 750;
+}
+.key--play:hover { --face: color-mix(in srgb, var(--orange) 90%, white); }
+.key--play .icon--stop { display: none; }
+.key--play.is-playing .icon--play { display: none; }
+.key--play.is-playing .icon--stop { display: block; }
+.key--play .key__led { background: rgb(0 0 0 / .25); }
+.key--play.is-playing .key__led {
+  background: var(--paper);
+  box-shadow: 0 0 8px 2px rgb(255 255 255 / .8);
+}
+
+.patterns { display: flex; gap: 6px; }
+.patterns .key {
+  min-width: 40px;
+  padding: 0;
+  font-weight: 700;
+}
+.patterns .key[aria-pressed="true"] {
+  --face: var(--ink);
+  --side: rgb(0 0 0 / .6);
+  color: var(--page);
+}
+
+/* ---- grille ---- */
+
+.grille {
+  border-radius: 12px;
+  background:
+    radial-gradient(circle, var(--lcd-bezel) 0 2.3px, transparent 2.9px) 0 0 / 11px 11px,
+    var(--panel-sunk);
+  box-shadow: inset 0 1px 3px rgb(0 0 0 / .15), 0 1px 0 var(--hi);
+  opacity: .9;
+  transform-origin: 50% 50%;
+  transition: transform .22s cubic-bezier(.2, .7, .3, 1);
+}
+.grille.is-thump {
+  transform: scale(1.018);
+  transition-duration: .04s;
+}
+
+/* ---- sequencer ---- */
+
+.seq {
+  display: grid;
+  gap: 8px;
+  padding: clamp(10px, 1.6vw, 18px);
+  border-radius: 13px;
+  background: var(--panel-sunk);
+  box-shadow: inset 0 1px 4px rgb(0 0 0 / .14), 0 1px 0 var(--hi);
+}
+
+.seq__row {
+  display: grid;
+  grid-template-columns: 78px repeat(16, minmax(0, 1fr));
+  gap: 6px;
+  align-items: center;
+}
+
+.seq__ruler span {
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.seq__ruler span:nth-child(4n + 2) { color: var(--ink); font-weight: 650; }
+.seq__ruler .led { width: 6px; height: 6px; }
+.seq__ruler .is-now .led {
+  background: var(--orange);
+  box-shadow: 0 0 6px 1px var(--orange);
+}
+
+.lane__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 550;
+}
+.lane__label .led { --lit: var(--lane); }
+.lane__label .led.is-hit {
+  background: var(--lane);
+  box-shadow: 0 0 8px 1px var(--lane);
+  transition-duration: 0s;
+}
+
+.step {
+  --face: var(--key);
+  position: relative;
+  height: 46px;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: var(--face);
+  cursor: pointer;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / .45),
+    0 2px 0 var(--key-side);
+  transition: background-color .08s ease, transform .06s ease, box-shadow .06s ease, filter .08s ease;
+}
+/* Alternate tint for every other group of four: one bar reads as four beats. */
+.step.g1, .step.g3 { --face: var(--key-alt); }
+.step::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  border-radius: 50%;
+  background: var(--led-off);
+}
+.step:hover { filter: brightness(1.04); }
+.step[aria-pressed="true"] { --face: var(--lane); }
+.step[aria-pressed="true"]::after {
+  background: rgb(255 255 255 / .92);
+  box-shadow: 0 0 6px 1px rgb(255 255 255 / .8);
+}
+.step.is-now {
+  box-shadow:
+    inset 0 0 0 2px color-mix(in srgb, var(--ink) 55%, transparent),
+    0 2px 0 var(--key-side);
+}
+.step.is-now[aria-pressed="true"] {
+  filter: brightness(1.18) saturate(1.1);
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 0 0 2px color-mix(in srgb, var(--ink) 55%, transparent),
+    0 1px 0 var(--key-side);
+}
+.step:active { transform: translateY(2px); box-shadow: 0 0 0 var(--key-side); }
+
+/* ---- responsive ---- */
+
+@media (max-width: 1100px) {
+  .device__deck { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .grille { display: none; }
+}
+
+@media (max-width: 900px) {
+  .device__head { grid-template-columns: 1fr; align-items: start; }
+  .device__intro { justify-self: start; }
+}
+
+@media (max-width: 760px) {
+  .device__deck { grid-template-columns: 1fr; }
+  .lcd { min-height: 180px; }
+  .knobs { justify-content: space-around; }
+}
+
+@media (max-width: 640px) {
+  .seq__ruler { display: none; }
+  .seq__row {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 5px;
+    row-gap: 6px;
+  }
+  .lane__label { grid-column: 1 / -1; margin-top: 4px; }
+  .step { height: 38px; }
+  .step::after { top: 6px; }
+  .plate { grid-template-columns: 1fr; }
+  .screw--tl, .screw--tr { top: 8px; }
+  .screw--bl, .screw--br { bottom: 8px; }
+  .screw--tl, .screw--bl { left: 8px; }
+  .screw--tr, .screw--br { right: 8px; }
+}
