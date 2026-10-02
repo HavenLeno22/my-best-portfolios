@@ -405,3 +405,9 @@ kbd {
 }
 .toast.is-on { opacity: 1; transform: translate(-50%, 0); }
 .has-minideck .toast { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
+
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}

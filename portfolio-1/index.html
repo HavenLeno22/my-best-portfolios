@@ -3,8 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Leno Instrument No. 1</title>
-<meta name="description" content="Leno designs and builds interfaces for the web. This portfolio is a playable instrument: a drum machine, four live tools, and a patch cable to get in touch.">
+<title>Haven Leno J, full-stack developer</title>
+<meta name="description" content="Haven Leno J is a full-stack developer and 3rd-year B.Tech CSE student at SRM IST, Chennai, working with React, Node.js, Express and Spring Boot. Looking for internships.">
+<meta name="author" content="Haven Leno J">
+<link rel="canonical" href="https://havenleno22.github.io/my-best-portfolios/portfolio-1/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Haven Leno J, full-stack developer">
+<meta property="og:description" content="A portfolio you can play: a drum machine, four projects, and a patch cable to get in touch.">
+<meta property="og:url" content="https://havenleno22.github.io/my-best-portfolios/portfolio-1/">
+<meta property="og:image" content="https://havenleno22.github.io/my-best-portfolios/portfolio-1/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The haven drum machine: a light grey device with an LCD, knobs and a grid of coloured step keys.">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#E2E4E1" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#141617" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23FF5A1F'/%3E%3Crect x='14.5' y='4' width='3' height='11' rx='1.5' fill='%231B1E1D'/%3E%3C/svg%3E">
@@ -32,11 +43,11 @@
 
 <header class="topbar" id="topbar">
   <div class="wrap topbar__inner">
-    <a class="topbar__mark" href="#top" aria-label="Leno, back to the top">leno</a>
+    <a class="topbar__mark" href="#top" aria-label="Haven Leno J, back to the top">haven</a>
     <nav class="topbar__nav" aria-label="Sections">
       <a href="#work">work</a>
       <a href="#about">about</a>
-      <a href="#process">process</a>
+      <a href="#stack">stack</a>
       <a href="#contact">contact</a>
     </nav>
     <div class="topbar__switches">
@@ -64,16 +75,18 @@
 
       <div class="device__head">
         <div class="device__brand">
-          <h1 class="wordmark" id="hero-title">leno</h1>
+          <h1 class="wordmark" id="hero-title"><span aria-hidden="true">haven</span><span class="visually-hidden">Haven Leno J</span></h1>
           <p class="device__model"><span class="led led--power" aria-hidden="true"></span>instrument no. 1</p>
         </div>
         <div class="device__intro">
-          <p class="lede">I design and build interfaces for the web. I care most about the part people only feel: how fast a thing responds, how it sounds, and whether it is still pleasant on the hundredth use.</p>
+          <p class="lede">I'm Haven Leno J, a full-stack developer studying computer science at SRM. I build web apps end to end, with React on the front end and Node.js, Express or Spring Boot behind it.</p>
           <dl class="plate">
-            <div><dt>practice</dt><dd>interface design and front-end engineering</dd></div>
-            <div><dt>based in</dt><dd data-place>India, UTC+5:30</dd></div>
+            <div><dt>role</dt><dd>full-stack developer</dd></div>
+            <div><dt>studying</dt><dd>B.Tech CSE, 3rd year, SRM IST</dd></div>
+            <div><dt>based in</dt><dd data-place>Chennai, India</dd></div>
             <div><dt>local time</dt><dd><time data-clock>--:--</time></dd></div>
-            <div><dt>status</dt><dd>open to freelance work and full-time roles</dd></div>
+            <div><dt>stack</dt><dd>React, Node.js, Express, Spring Boot</dd></div>
+            <div><dt>status</dt><dd>looking for internships</dd></div>
           </dl>
         </div>
       </div>
@@ -130,133 +143,120 @@
         <p class="visually-hidden" id="seq-help">Each button turns one step on or off. Use the arrow keys to move between steps.</p>
       </div>
     </div>
-    <p class="hero__hint">Press play or the space bar, then change the steps while it runs. Turn the knobs by dragging, clicking a point on the dial, or with the arrow keys.</p>
+    <p class="hero__hint">This portfolio is a drum machine. Press play or the space bar, then change the steps while it runs. Turn the knobs by dragging, clicking a point on the dial, or with the arrow keys.</p>
   </section>
 
-  <!-- Work: four live modules mounted in a rack. -->
+  <!-- Work: four projects mounted in a rack. -->
   <section class="section wrap" id="work" aria-labelledby="work-title">
     <div class="section__head">
       <h2 class="section__title" id="work-title">Work</h2>
-      <p class="section__lead">Four small instruments, all running live on this page. Each one began as a question I wanted to answer with a working prototype instead of a mockup. Open the notes on any module to see how it is built.</p>
+      <p class="section__lead">Things I've built, from a computer-vision safety system to small tools for everyday jobs. Every module links to its code on GitHub.</p>
     </div>
 
     <div class="rack">
       <div class="rack__row">
 
-        <article class="module module--plotter" id="plotter" aria-labelledby="plotter-title" style="--span: 7">
+        <article class="module project" id="surgeguard" aria-labelledby="surgeguard-title" style="--span: 7">
           <header class="module__head">
-            <h3 id="plotter-title">plotter</h3>
-            <p>Seeded flow-field drawings, drawn line by line the way a pen plotter would.</p>
+            <h3 id="surgeguard-title">SurgeGuard 1.0</h3>
+            <p>A real-time crowd-safety platform. It turns ordinary camera feeds into an explainable Crowd Stability Index and tells control-room operators what is happening, why, and what to do about it.</p>
           </header>
-          <div class="module__screen plotter__paper">
-            <canvas class="plotter__canvas" id="plotter-canvas" role="img" aria-label="Generated line drawing"></canvas>
-            <span class="plotter__pen" id="plotter-pen" aria-hidden="true"></span>
+          <div class="module__screen csi" id="csi">
+            <div class="csi__top">
+              <p class="csi__score"><span class="csi__label">csi</span> <span id="csi-value">72</span></p>
+              <p class="csi__status" id="csi-status" aria-live="polite">observe</p>
+            </div>
+            <div class="csi__scale" aria-hidden="true">
+              <span data-band="critical">0</span><span data-band="high">20</span><span data-band="attention">40</span><span data-band="observe">60</span><span data-band="stable">80</span>
+              <i class="csi__needle" id="csi-needle"></i>
+            </div>
+            <ul class="csi__weights" aria-label="Indicator weights in the score">
+              <li style="--w: .35"><span>crowd density</span><b>0.35</b></li>
+              <li style="--w: .20"><span>movement suppression</span><b>0.20</b></li>
+              <li style="--w: .20"><span>exit congestion</span><b>0.20</b></li>
+              <li style="--w: .15"><span>opposing flow</span><b>0.15</b></li>
+              <li style="--w: .10"><span>rate of change</span><b>0.10</b></li>
+            </ul>
           </div>
           <div class="module__controls">
-            <div class="knob-wrap knob-wrap--small"><div id="knob-density"></div><span class="knob-label" id="knob-density-label">lines</span></div>
-            <div class="knob-wrap knob-wrap--small"><div id="knob-flow"></div><span class="knob-label" id="knob-flow-label">flow</span></div>
-            <button class="key" id="plotter-new" type="button">new drawing</button>
-            <button class="key" id="plotter-copy" type="button">copy as svg</button>
-            <span class="readout" id="plotter-seed">seed 0000</span>
+            <div class="knob-wrap knob-wrap--small"><div id="knob-csi"></div><span class="knob-label" id="knob-csi-label">score</span></div>
+            <p class="module__hint">Turn the knob to see how a score maps to the status operators see.</p>
+            <a class="key" href="https://github.com/HavenLeno22/surge-guard1.0" rel="noopener">view code</a>
           </div>
+          <ul class="chips" aria-label="Built with">
+            <li>Python</li><li>YOLO + ByteTrack</li><li>FastAPI</li><li>WebSockets</li><li>React</li><li>TypeScript</li><li>Arduino</li>
+          </ul>
           <details class="module__notes">
-            <summary>How it's built</summary>
-            <p>A flow field is a grid of angles taken from gradient noise. Every line starts at a random point and follows those angles until it leaves the paper. The random numbers come from a seeded generator, so the same seed always gives the same drawing.</p>
-            <p>It renders to canvas while you watch. Copying exports the same line data as clean SVG paths, ready to paste into Figma or send to a real plotter.</p>
-            <p class="module__stack">Canvas 2D, seeded PRNG, Perlin-style gradient noise</p>
+            <summary>What it does</summary>
+            <p>Every camera feed goes through Ultralytics YOLO (people only) and ByteTrack, so each person keeps an identity between frames. It runs on CUDA with FP16 when it can and falls back to the CPU, and it says which one it is using.</p>
+            <p>The score is <code>CSI = clamp(100 − Σ wᵢ·pᵢ, 0, 100)</code> over the five weighted indicators above. Weights renormalise when an indicator can't be measured, the score is smoothed, and a band change needs hysteresis before it takes effect. Every reading carries a confidence and the factor that limits it.</p>
+            <p>An evidence engine turns measurements into plain observations, such as "Opposing movement detected", each citing the number behind it. A decision engine then issues an operational report with actions like opening more exit capacity, which operators acknowledge and log to a timeline. It also forecasts queues, combines several cameras into one site view, and can drive an Arduino alert light and buzzer.</p>
           </details>
         </article>
 
-        <article class="module module--specimen" id="specimen" aria-labelledby="specimen-title" style="--span: 5">
+        <article class="module project" id="translator" aria-labelledby="translator-title" style="--span: 5">
           <header class="module__head">
-            <h3 id="specimen-title">specimen</h3>
-            <p>A variable-font tester that drives weight and width like a mixing desk.</p>
+            <h3 id="translator-title">Multi-Mode AI Translator</h3>
+            <p>Translate between languages with the Gemini API, or encode and decode Morse code. Speak your input, and hear the result read back.</p>
           </header>
-          <div class="module__screen specimen__screen" id="specimen-screen">
-            <p class="specimen__text" id="specimen-text" contenteditable="true" spellcheck="false" role="textbox" aria-label="Sample text. Click to type your own.">Handgloves</p>
+          <div class="module__screen morse">
+            <label class="morse__field" for="morse-input"><span>text</span>
+              <input id="morse-input" type="text" value="HAVEN" maxlength="20" autocomplete="off" spellcheck="false">
+            </label>
+            <p class="morse__code" id="morse-code" role="img" aria-label="HAVEN in Morse code"></p>
           </div>
           <div class="module__controls">
-            <div class="knob-wrap knob-wrap--small"><div id="knob-wght"></div><span class="knob-label" id="knob-wght-label">weight</span></div>
-            <div class="knob-wrap knob-wrap--small"><div id="knob-wdth"></div><span class="knob-label" id="knob-wdth-label">width</span></div>
-            <div class="knob-wrap knob-wrap--small"><div id="knob-size"></div><span class="knob-label" id="knob-size-label">size</span></div>
-            <button class="key" id="specimen-italic" type="button" aria-pressed="false"><span class="key__led" aria-hidden="true"></span>italic</button>
-            <button class="key" id="specimen-sweep" type="button">sweep</button>
-            <span class="readout" id="specimen-readout">wght 700 wdth 100</span>
+            <button class="key" id="morse-play" type="button"><span class="key__led" aria-hidden="true"></span><span class="key__text">play in morse</span></button>
+            <a class="key" href="https://github.com/HavenLeno22/morsecode" rel="noopener">view code</a>
           </div>
+          <ul class="chips" aria-label="Built with">
+            <li>Python</li><li>Flask</li><li>Gemini API</li><li>Web Speech API</li><li>Tailwind CSS</li>
+          </ul>
           <details class="module__notes">
-            <summary>How it's built</summary>
-            <p>A variable font stores a whole family in one file, with axes you can set to any value in between. This tester moves Archivo along its weight and width axes, the same font and axes used for every heading on this page. Click the sample to type your own text.</p>
-            <p class="module__stack">CSS font-weight and font-stretch on a variable font, container query units</p>
+            <summary>What it does</summary>
+            <p>Language mode sends text to the Gemini API and covers languages including Tamil, Telugu and Spanish. Morse mode encodes English, and decodes from typed text, a tap pad, or an uploaded <code>.txt</code> file.</p>
+            <p>Voice input uses the Web Speech API, translations can be read aloud, and a history log keeps past translations. The Morse player above is a small re-creation of the encoder for this page.</p>
           </details>
         </article>
 
       </div>
       <div class="rack__row">
 
-        <article class="module module--life" id="life" aria-labelledby="life-title" style="--span: 5">
+        <article class="module project" id="staffsync" aria-labelledby="staffsync-title" style="--span: 6">
           <header class="module__head">
-            <h3 id="life-title">life</h3>
-            <p>Conway's Game of Life on a 16 by 16 LED matrix, stepped by the beat.</p>
+            <h3 id="staffsync-title">StaffSync</h3>
+            <p>An employee-management dashboard with admin and viewer roles, a searchable directory, branch charts, birthday and anniversary reminders, an audit log and CSV export.</p>
           </header>
-          <div class="module__screen life__matrix">
-            <canvas class="life__canvas" id="life-canvas" tabindex="0" role="application" aria-roledescription="cell grid" aria-label="Life grid, 16 by 16. Arrow keys move the cursor, space turns a cell on or off." aria-describedby="life-readout"></canvas>
-          </div>
+          <figure class="module__screen shot">
+            <img src="img/staffsync.webp" alt="StaffSync dashboard: employee count, average salary, a donut chart of employees by branch, upcoming birthdays and anniversaries, and the employee directory with search, branch filter and CSV export." width="2561" height="1294" loading="lazy" decoding="async">
+          </figure>
           <div class="module__controls">
-            <button class="key" id="life-run" type="button" aria-pressed="false"><span class="key__led" aria-hidden="true"></span>run</button>
-            <button class="key" id="life-step" type="button">step</button>
-            <button class="key" id="life-seed" type="button">scatter</button>
-            <button class="key" id="life-clear" type="button">clear</button>
-            <span class="readout" id="life-readout">gen 0000</span>
+            <a class="key" href="https://github.com/HavenLeno22/staff-sync" rel="noopener">view code</a>
           </div>
-          <details class="module__notes">
-            <summary>How it's built</summary>
-            <p>The grid wraps at the edges, so a glider that leaves on the right comes back on the left. Draw cells with the pointer, or focus the grid and use the arrow keys and space.</p>
-            <p>When the drum machine is playing, the grid advances one generation on every beat instead of running on its own timer, so rhythm and pattern stay locked together.</p>
-            <p class="module__stack">Canvas 2D, typed arrays, the sequencer's audio clock</p>
-          </details>
+          <ul class="chips" aria-label="Built with">
+            <li>JavaScript</li><li>Firebase Firestore</li><li>Chart.js</li><li>Tailwind CSS</li>
+          </ul>
         </article>
 
-        <article class="module module--contrast" id="contrast" aria-labelledby="contrast-title" style="--span: 7">
+        <article class="module project" id="expenses" aria-labelledby="expenses-title" style="--span: 6">
           <header class="module__head">
-            <h3 id="contrast-title">contrast</h3>
-            <p>A contrast meter for text colours, with a fix that keeps the hue you chose.</p>
+            <h3 id="expenses-title">Student Expense Tracker</h3>
+            <p>Track income and spending by category, with a running balance and history saved to Firebase.</p>
           </header>
-          <div class="module__screen contrast__screen">
-            <div class="contrast__preview" id="contrast-preview">
-              <p class="contrast__big">Can you read this?</p>
-              <p class="contrast__small">Body text needs a contrast ratio of at least 4.5 to 1 against its background. Large text can get by with 3 to 1.</p>
-            </div>
-            <div class="contrast__meter">
-              <p class="readout readout--big" id="contrast-ratio">0.00 : 1</p>
-              <ul class="contrast__checks" id="contrast-checks">
-                <li data-min="3"><span class="led" aria-hidden="true"></span><span>large text, 3:1</span><strong>fail</strong></li>
-                <li data-min="4.5"><span class="led" aria-hidden="true"></span><span>body text, 4.5:1</span><strong>fail</strong></li>
-                <li data-min="7"><span class="led" aria-hidden="true"></span><span>enhanced, 7:1</span><strong>fail</strong></li>
-              </ul>
-              <p class="contrast__hex">
-                <button class="hexchip" type="button" id="contrast-fg-hex">#000000</button>
-                <span>on</span>
-                <button class="hexchip" type="button" id="contrast-bg-hex">#FFFFFF</button>
-              </p>
-            </div>
-          </div>
+          <figure class="module__screen shot">
+            <img src="img/expense-tracker.webp" alt="Student Expense Tracker: cards for current balance, total income and total expenses, a form to add an expense or income with a category, and a history list." width="2561" height="1294" loading="lazy" decoding="async">
+          </figure>
           <div class="module__controls">
-            <div class="knob-wrap knob-wrap--small"><div id="knob-fg-h"></div><span class="knob-label" id="knob-fg-h-label">text hue</span></div>
-            <div class="knob-wrap knob-wrap--small"><div id="knob-fg-l"></div><span class="knob-label" id="knob-fg-l-label">text light</span></div>
-            <div class="knob-wrap knob-wrap--small"><div id="knob-bg-h"></div><span class="knob-label" id="knob-bg-h-label">ground hue</span></div>
-            <div class="knob-wrap knob-wrap--small"><div id="knob-bg-l"></div><span class="knob-label" id="knob-bg-l-label">ground light</span></div>
-            <button class="key" id="contrast-fix" type="button">fix</button>
-            <button class="key" id="contrast-swap" type="button">swap</button>
+            <a class="key" href="https://github.com/HavenLeno22/expense-tracker" rel="noopener">view code</a>
           </div>
-          <details class="module__notes">
-            <summary>How it's built</summary>
-            <p>The ratio uses the WCAG 2 formula: the relative luminance of the lighter colour plus 0.05, divided by the darker one plus 0.05. Fix runs a binary search for the smallest lightness change to the text colour that reaches 4.5 to 1, so the hue you picked survives.</p>
-            <p class="module__stack">sRGB relative luminance, binary search, no colour libraries</p>
-          </details>
+          <ul class="chips" aria-label="Built with">
+            <li>React 18</li><li>Firebase Firestore</li><li>Tailwind CSS</li>
+          </ul>
         </article>
 
       </div>
     </div>
+    <p class="work__more"><a href="https://github.com/HavenLeno22" rel="noopener">More projects on GitHub</a></p>
   </section>
 
   <!-- About -->
@@ -266,51 +266,52 @@
     </div>
     <div class="about__grid">
       <div class="about__text">
-        <p>I'm Leno, a designer who writes the code for what I design. Most of my work sits where interface design meets engineering: design systems, interactive tools, and the small details that make software feel considered.</p>
-        <p>I learned by taking apart websites I liked to see how they worked, and I still learn best that way. This page is hand-written HTML, CSS and JavaScript with no frameworks. I set that constraint to keep it fast, and to prove to myself I understand every part of it.</p>
-        <p>Away from the browser I listen to a lot of music with too many synthesizers in it, which explains the drum machine at the top of the page.</p>
+        <p>I'm Haven Leno J, a full-stack developer and a third-year B.Tech Computer Science and Engineering student at SRM Institute of Science and Technology in Chennai.</p>
+        <p>I work across the whole stack: React on the front end, and Node.js with Express or Java with Spring Boot on the back end. My projects range from SurgeGuard, a real-time crowd-safety system built on computer vision, to small web tools like an employee dashboard and an expense tracker.</p>
+        <p>Right now I'm looking for internships. If you're hiring, the patch cable at the bottom of this page is the quickest way to reach me.</p>
       </div>
       <aside class="spec" aria-labelledby="spec-title">
         <span class="screw screw--tl" aria-hidden="true"></span>
         <span class="screw screw--br" aria-hidden="true"></span>
         <h3 class="spec__title" id="spec-title">spec sheet</h3>
         <dl class="spec__list">
-          <div><dt>disciplines</dt><dd>interface design, design systems, front-end engineering, creative coding</dd></div>
-          <div><dt>tools</dt><dd>Figma, TypeScript, React, Next.js, Canvas, Web Audio, WebGL</dd></div>
-          <div><dt>working hours</dt><dd>10:00 to 19:00 IST, flexible for other time zones</dd></div>
-          <div><dt>replies</dt><dd>within two working days</dd></div>
+          <div><dt>name</dt><dd>Haven Leno J</dd></div>
+          <div><dt>studying</dt><dd>B.Tech Computer Science and Engineering, SRM Institute of Science and Technology, 3rd year</dd></div>
+          <div><dt>main stack</dt><dd>React, Node.js, Express, Java, Spring Boot</dd></div>
+          <div><dt>also used</dt><dd>Python, FastAPI, Flask, Firebase, Tailwind CSS, Gemini API</dd></div>
+          <div><dt>looking for</dt><dd>internships</dd></div>
           <div><dt>right now</dt><dd id="now-status">checking the clock</dd></div>
         </dl>
       </aside>
     </div>
   </section>
 
-  <!-- Process: the stages really are a sequence, so they are numbered. -->
-  <section class="section wrap" id="process" aria-labelledby="process-title">
+  <!-- Stack: the layers of a full-stack app really are a chain, so they are numbered. -->
+  <section class="section wrap" id="stack" aria-labelledby="stack-title">
     <div class="section__head">
-      <h2 class="section__title" id="process-title">Process</h2>
-      <p class="section__lead">Every project runs through the same signal chain. The order matters, and so does looping back to the start when something sounds wrong.</p>
+      <h2 class="section__title" id="stack-title">Stack</h2>
+      <p class="section__lead">A request in one of my apps passes through four layers on its way from the screen to the server and back. These are the tools I use at each one.</p>
     </div>
     <ol class="chain" id="chain">
       <li class="pedal">
         <div class="pedal__top"><span class="pedal__num">1</span><span class="led" aria-hidden="true"></span></div>
-        <h3>listen</h3>
-        <p>Talk to the people who will use the thing and read what already exists. I write the problem down in one sentence before designing anything.</p>
+        <h3>interface</h3>
+        <p>React and Tailwind CSS, or plain HTML, CSS and JavaScript when a page doesn't need a framework. This one doesn't.</p>
       </li>
       <li class="pedal">
         <div class="pedal__top"><span class="pedal__num">2</span><span class="led" aria-hidden="true"></span></div>
-        <h3>sketch</h3>
-        <p>Prototype in the browser early, with real content. A rough version you can click beats a polished picture you can't.</p>
+        <h3>api</h3>
+        <p>Node.js with Express, or Java with Spring Boot. Python with FastAPI or Flask when the work involves machine learning.</p>
       </li>
       <li class="pedal">
         <div class="pedal__top"><span class="pedal__num">3</span><span class="led" aria-hidden="true"></span></div>
-        <h3>build</h3>
-        <p>Production code that is typed, accessible, and quick on a cheap phone. Design decisions become tokens and components, not one-off styles.</p>
+        <h3>data</h3>
+        <p>Firebase Firestore in StaffSync and the expense tracker. Authentication and stored history in SurgeGuard's backend.</p>
       </li>
       <li class="pedal">
         <div class="pedal__top"><span class="pedal__num">4</span><span class="led" aria-hidden="true"></span></div>
-        <h3>tune</h3>
-        <p>Ship it, watch how it gets used, and adjust. Most of the quality in a product comes from the second and third pass.</p>
+        <h3>live + ai</h3>
+        <p>WebSockets for live dashboards, YOLO and ByteTrack for computer vision, and the Gemini API for language features.</p>
       </li>
     </ol>
   </section>
@@ -320,11 +321,16 @@
     <div class="contact__grid">
       <div class="contact__text">
         <h2 class="section__title" id="contact-title">Contact</h2>
-        <p class="section__lead">Have a project, a role, or a question about anything on this page? Plug in the cable, or write to me directly.</p>
+        <p class="section__lead">Hiring an intern, or want to talk about a project? Plug in the cable, or write to me directly.</p>
         <div class="contact__email">
           <a class="contact__address" data-email href="mailto:havenleno2006@gmail.com">havenleno2006@gmail.com</a>
           <button class="key" type="button" data-copy-email>copy address</button>
         </div>
+        <ul class="contact__links" aria-label="Elsewhere">
+          <li><a class="key" href="https://github.com/HavenLeno22" rel="me noopener">GitHub</a></li>
+          <li><a class="key" href="https://www.linkedin.com/in/havenleno" rel="me noopener">LinkedIn</a></li>
+          <li><a class="key" href="https://leetcode.com/u/lenohaven/" rel="me noopener">LeetCode</a></li>
+        </ul>
       </div>
       <div class="patchbay" id="patchbay">
         <span class="screw screw--tl" aria-hidden="true"></span>
@@ -356,7 +362,7 @@
 
 <footer class="wrap colophon">
   <p>Set in Archivo and Doto. Hand-written HTML, CSS and JavaScript, no frameworks. Every sound is synthesized live with the Web Audio API.</p>
-  <p class="colophon__end"><button class="linkish" type="button" id="open-shortcuts">keyboard shortcuts</button><span>&copy; <span data-year>2026</span> Leno</span></p>
+  <p class="colophon__end"><button class="linkish" type="button" id="open-shortcuts">keyboard shortcuts</button><span>&copy; <span data-year>2026</span> Haven Leno J</span></p>
 </footer>
 
 <div class="minideck" id="minideck" aria-hidden="true">
@@ -387,10 +393,7 @@
 <script src="js/knob.js" defer></script>
 <script src="js/scope.js" defer></script>
 <script src="js/sequencer.js" defer></script>
-<script src="js/plotter.js" defer></script>
-<script src="js/specimen.js" defer></script>
-<script src="js/contrast.js" defer></script>
-<script src="js/life.js" defer></script>
+<script src="js/projects.js" defer></script>
 <script src="js/patch.js" defer></script>
 <script src="js/app.js" defer></script>
 </body>

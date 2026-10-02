@@ -47,10 +47,10 @@
 
 .wordmark {
   /* A fixed box, measured from the loaded font, so the hero grid can't jump on font swap. */
-  width: 2.6em;
+  width: 3.75em;
   white-space: nowrap;
   margin-left: -0.05em;
-  font-size: clamp(88px, 14vw, 196px);
+  font-size: clamp(64px, 12.5vw, 172px);
   font-weight: 900;
   font-stretch: 125%;
   line-height: .74;

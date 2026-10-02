@@ -65,20 +65,12 @@
   /* ---------- clock ---------- */
 
   const clockFmt = new Intl.DateTimeFormat('en-GB', { timeZone: cfg.timeZone, hour: '2-digit', minute: '2-digit', hour12: false });
-  const hourFmt = new Intl.DateTimeFormat('en-GB', { timeZone: cfg.timeZone, hour: 'numeric', hour12: false });
   const nowStatus = document.getElementById('now-status');
 
   function tick() {
-    const now = new Date();
-    const time = clockFmt.format(now);
-    const hour = Number(hourFmt.format(now)) % 24;
+    const time = clockFmt.format(new Date());
     document.querySelectorAll('[data-clock]').forEach((n) => { n.textContent = time; });
-    let line;
-    if (hour >= cfg.workStart && hour < cfg.workEnd) line = `It's ${time} here, so I'm at the desk.`;
-    else if (hour >= cfg.workEnd && hour < 24) line = `It's ${time} here. I'm probably still around.`;
-    else if (hour < 7) line = `It's ${time} here and I'm asleep. I'll reply in the morning.`;
-    else line = `It's ${time} here. Starting the day soon.`;
-    nowStatus.textContent = line;
+    nowStatus.textContent = `${time} in ${cfg.city}`;
   }
   tick();
   setInterval(tick, 20000);
